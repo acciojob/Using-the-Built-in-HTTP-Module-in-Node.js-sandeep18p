@@ -1,38 +1,16 @@
-const http = require('http');
-const fs = require('fs');
-
-
-if (process.argv.length < 3) {
-  console.error('Please provide a file path as an argument.');
-  process.exit(1);
-}
-
-
-const filePath = process.argv[2];
-
-
-fs.readFile(filePath, 'utf8', (err, data) => {
-  if (err) {
-    console.error('Error reading the file:', err.message);
-    process.exit(1);
-  }
- 
-  
-  console.log('File contents:', data);
-});
-
+const http = require("http");
+const port = 3000;
 
 // TODO: Create an HTTP server
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "text/plain");
+  res.end("Hello, World!\n");
+});
 
 // TODO: Listen on port 3000
+server.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
 
-
-//create a server object:
-http.createServer(function (req, res) {
-  
-  res.statusCode = 200;
- 
-  res.end("Hello, World!\n");
-}).listen(3000); 
 // DO NOT EDIT BELOW THIS LINE (Uncomment it once you are done with your code)
-
